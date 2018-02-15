@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Landon.Api.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -23,7 +25,11 @@ namespace Landon.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(opt => {
+                var jsonFormatter = opt.OutputFormatters.OfType<JsonOutputFormatter>().Single();
+                opt.OutputFormatters.Remove(jsonFormatter);
+                opt.OutputFormatters.Add(new IonOutputFormatter(jsonFormatter));
+            });
             services.AddRouting(opt => opt.LowercaseUrls = true);
         }
 
