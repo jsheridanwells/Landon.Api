@@ -3,27 +3,26 @@
         "windowsAuthentication": false,
         "anonymousAuthentication": true,
         "iisExpress": {
-            "applicationUrl": "http://localhost:55556/",
-            "sslPort": 0
+            "applicationUrl": "http://localhost:53136/",
+            "sslPort": 44323
         }
     },
     "profiles": {
         "IIS Express": {
             "commandName": "IISExpress",
-            "launchBrowser": false,
             "launchUrl": "api/values",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
         },
-        "Landon.Api": {
+        "LandonApi": {
             "commandName": "Project",
-            "launchBrowser": false,
+            "launchBrowser": true,
             "launchUrl": "api/values",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
-            "applicationUrl": "http://localhost:5000/"
+            "applicationUrl": "http://localhost:53137"
         }
     }
 }
