@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Net.Http.Headers;
+using System;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Formatters;
-using Microsoft.Net.Http.Headers;
 
-
-namespace Landon.Api.Infrastructure
+namespace LandonApi.Infrastructure
 {
     public class IonOutputFormatter : TextOutputFormatter
     {
@@ -15,11 +14,12 @@ namespace Landon.Api.Infrastructure
         {
             if (jsonOutputFormatter == null) throw new ArgumentNullException(nameof(jsonOutputFormatter));
             _jsonOutputFormatter = jsonOutputFormatter;
+
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/ion+json"));
-            SupportedEncodings.Add(Encoding.UTF8);  
+            SupportedEncodings.Add(Encoding.UTF8);
         }
+
         public override Task WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
             => _jsonOutputFormatter.WriteResponseBodyAsync(context, selectedEncoding);
-        
     }
 }
